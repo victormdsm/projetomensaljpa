@@ -4,6 +4,8 @@ package org.finance.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(indexes = {
@@ -23,6 +25,8 @@ public class Usuarios {
     private String nomeUsuario;
     private String senha;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Gastos> gastos = new ArrayList<>();
 
     public Usuarios() {
     }
@@ -90,6 +94,14 @@ public class Usuarios {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Gastos> getGastos() {
+        return gastos;
+    }
+
+    public void addGastos(Gastos gasto) {
+        this.gastos.add(gasto);
     }
 
     @Override

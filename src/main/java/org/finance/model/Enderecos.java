@@ -1,9 +1,6 @@
 package org.finance.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Enderecos {
@@ -19,10 +16,14 @@ public class Enderecos {
     private String pais;
     private String complemento;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(unique = true)
+    private Usuarios usuario;
+
     public Enderecos() {
     }
 
-    public Enderecos(String rua, String numero, String cep, String cidade, String estado, String pais, String complemento) {
+    public Enderecos(String rua, String numero, String cep, String cidade, String estado, String pais, String complemento, Usuarios usuario) {
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
@@ -30,6 +31,7 @@ public class Enderecos {
         this.estado = estado;
         this.pais = pais;
         this.complemento = complemento;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -94,6 +96,14 @@ public class Enderecos {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
     }
 
     @Override
