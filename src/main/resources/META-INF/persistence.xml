@@ -6,6 +6,9 @@
     <persistence-unit name="jpa-config" transaction-type="RESOURCE_LOCAL">
 
         <class>org.finance.model.Usuarios</class>
+        <class>org.finance.model.Gastos</class>
+        <class>org.finance.model.TiposDeDespesas</class>
+        <class>org.finance.model.Enderecos</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url"
