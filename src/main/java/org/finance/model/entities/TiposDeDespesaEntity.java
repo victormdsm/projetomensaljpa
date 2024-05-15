@@ -1,4 +1,4 @@
-package org.finance.model;
+package org.finance.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class TiposDeDespesas {
+public class TiposDeDespesaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeDaDespesa;
 
-    public TiposDeDespesas() {
+    public TiposDeDespesaEntity() {
     }
 
-    public TiposDeDespesas(Long id, String nomeDaDespesa) {
+    public TiposDeDespesaEntity(Long id, String nomeDaDespesa) {
         this.id = id;
         this.nomeDaDespesa = nomeDaDespesa;
     }

@@ -1,9 +1,9 @@
-package org.finance.model;
+package org.finance.model.entities;
 
 import javax.persistence.*;
 
 @Entity
-public class Enderecos {
+public class EnderecoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +18,12 @@ public class Enderecos {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(unique = true)
-    private Usuarios usuario;
+    private UsuarioEntity usuario;
 
-    public Enderecos() {
+    public EnderecoEntity() {
     }
 
-    public Enderecos(String rua, String numero, String cep, String cidade, String estado, String pais, String complemento, Usuarios usuario) {
+    public EnderecoEntity(String rua, String numero, String cep, String cidade, String estado, String pais, String complemento, UsuarioEntity usuario) {
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
@@ -98,11 +98,11 @@ public class Enderecos {
         this.complemento = complemento;
     }
 
-    public Usuarios getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 

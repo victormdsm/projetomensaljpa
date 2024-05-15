@@ -1,6 +1,8 @@
-package org.finance.model;
+package org.finance.model.entities;
 
 
+
+import org.finance.model.entities.GastoEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +14,7 @@ import java.util.List;
         @Index(name = "idx_email", columnList = "email", unique = true),
         @Index(name = "idx_senha", columnList = "senha")
 })
-public class Usuarios {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +28,12 @@ public class Usuarios {
     private String senha;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Gastos> gastos = new ArrayList<>();
+    private List<GastoEntity> gastos = new ArrayList<>();
 
-    public Usuarios() {
+    public UsuarioEntity() {
     }
 
-    public Usuarios(String nome, String cpf, LocalDate dataNascimento, String email, String nomeUsuario, String senha) {
+    public UsuarioEntity(String nome, String cpf, LocalDate dataNascimento, String email, String nomeUsuario, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -96,11 +98,11 @@ public class Usuarios {
         this.senha = senha;
     }
 
-    public List<Gastos> getGastos() {
+    public List<GastoEntity> getGastos() {
         return gastos;
     }
 
-    public void addGastos(Gastos gasto) {
+    public void addGastos(GastoEntity gasto) {
         this.gastos.add(gasto);
     }
 

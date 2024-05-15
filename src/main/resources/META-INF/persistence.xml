@@ -5,10 +5,10 @@
  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
     <persistence-unit name="jpa-config" transaction-type="RESOURCE_LOCAL">
 
-        <class>org.finance.model.Usuarios</class>
-        <class>org.finance.model.Gastos</class>
-        <class>org.finance.model.TiposDeDespesas</class>
-        <class>org.finance.model.Enderecos</class>
+        <class>org.finance.model.entities.UsuarioEntity</class>
+        <class>org.finance.model.entities.GastoEntity</class>
+        <class>org.finance.model.entities.TiposDeDespesaEntity</class>
+        <class>org.finance.model.entities.EnderecoEntity</class>
 
         <properties>
             <property name="javax.persistence.jdbc.url"
@@ -16,7 +16,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="root" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="hibernate.jdbc.time_zone" value="UTC"/>

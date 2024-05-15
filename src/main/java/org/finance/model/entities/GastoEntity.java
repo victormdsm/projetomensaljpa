@@ -1,13 +1,11 @@
-package org.finance.model;
+package org.finance.model.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Gastos {
+public class GastoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +15,12 @@ public class Gastos {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuarios usuario;
+    private UsuarioEntity usuario;
 
-    public Gastos() {
+    public GastoEntity() {
     }
 
-    public Gastos(BigDecimal valor, LocalDate diaDoGasto, Usuarios usuario) {
+    public GastoEntity(BigDecimal valor, LocalDate diaDoGasto, UsuarioEntity usuario) {
         this.valor = valor;
         this.diaDoGasto = diaDoGasto;
         this.usuario = usuario;
@@ -52,11 +50,11 @@ public class Gastos {
         this.diaDoGasto = diaDoGasto;
     }
 
-    public Usuarios getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuarios usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 
