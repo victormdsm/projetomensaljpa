@@ -17,6 +17,10 @@ public class GastoEntity {
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioEntity usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "tipo_despesa_id")
+    private TiposDeDespesaEntity tiposDeDespesa;
+
     public GastoEntity() {
     }
 

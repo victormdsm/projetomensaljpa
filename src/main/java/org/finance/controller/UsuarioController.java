@@ -20,4 +20,8 @@ public class UsuarioController {
     public List<UsuarioEntity> resgatarUsuarios() {
         return usuarioService.trazerTodosOsUsuarios();
     }
+
+    public UsuarioEntity findById(Long id) {
+        return usuarioService.findById(id);
+    }
 }

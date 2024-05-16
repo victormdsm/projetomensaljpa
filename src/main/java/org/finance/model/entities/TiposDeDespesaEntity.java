@@ -1,9 +1,7 @@
 package org.finance.model.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class TiposDeDespesaEntity {
@@ -11,6 +9,10 @@ public class TiposDeDespesaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeDaDespesa;
+
+
+    @OneToMany(mappedBy = "tiposDeDespesa")
+    private List<GastoEntity> gastos;
 
     public TiposDeDespesaEntity() {
     }

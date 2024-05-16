@@ -35,7 +35,7 @@ public class UsuarioRepository implements CrudBasic{
 
     @Override
     public Object findById(Long id) {
-        return null;
+        return dao.findById(id);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package org.finance.model.repositories;
 
+import org.finance.model.entities.UsuarioEntity;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -66,6 +68,11 @@ public class DAO<E> {
 
     public void close() {
         em.close();
+    }
+
+    public DAO<E> findById(Long id) {
+        em.find(classe, id);
+        return this;
     }
 
 

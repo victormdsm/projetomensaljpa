@@ -23,5 +23,8 @@ public class UsuarioService implements UsuarioServiceInterface {
         return usuarioRepository.findAll();
     }
 
-
+    @Override
+    public UsuarioEntity findById(Long id) {
+        return (UsuarioEntity) usuarioRepository.findById(id);
+    }
 }
