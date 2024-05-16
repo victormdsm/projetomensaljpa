@@ -8,5 +8,6 @@ public interface UsuarioServiceInterface {
 
     public UsuarioEntity adicionarUsuario(UsuarioEntity usuario);
     public List<UsuarioEntity> trazerTodosOsUsuarios();
-    public UsuarioEntity findById(Long id);
+    public Object findById(Long id);
+    public Object login(String email, String senha);
 }

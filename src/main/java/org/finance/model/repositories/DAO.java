@@ -1,11 +1,9 @@
 package org.finance.model.repositories;
 
 import org.finance.model.entities.UsuarioEntity;
+import org.mindrot.jbcrypt.BCrypt;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
@@ -42,6 +40,11 @@ public class DAO<E> {
         return this;
     }
 
+    public DAO<E> createQuery(String query, Class<E> classe) {
+        em.createQuery(query, classe);
+        return this;
+    }
+
     public DAO<E> insertData(E entity) {
         em.persist(entity);
         return this;
@@ -70,10 +73,26 @@ public class DAO<E> {
         em.close();
     }
 
-    public DAO<E> findById(Long id) {
-        em.find(classe, id);
-        return this;
+    public E findById(Long id) {
+        return em.find(classe, id);
     }
 
+    public E login(String email, String senha) {
+        String jpql = "SELECT u from UsuarioEntity u where u.email = :email";
+        TypedQuery<E> query = em.createQuery(jpql, classe);
+        query.setParameter("email", email);
+
+        List<E> result = query.getResultList();
+        if(result.isEmpty()) {
+            return null;
+        }
+
+        UsuarioEntity user = (UsuarioEntity) result.get(0);
+        if(BCrypt.checkpw(senha, user.getSenha())) {
+            return (E) user;
+        } else {
+            return null;
+        }
+    }
 
 }

@@ -27,4 +27,11 @@ public class UsuarioService implements UsuarioServiceInterface {
     public UsuarioEntity findById(Long id) {
         return (UsuarioEntity) usuarioRepository.findById(id);
     }
+
+    @Override
+    public Object login(String email, String senha) {
+        return usuarioRepository.login(email, senha);
+    }
+
+
 }

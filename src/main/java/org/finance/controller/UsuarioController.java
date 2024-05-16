@@ -24,4 +24,8 @@ public class UsuarioController {
     public UsuarioEntity findById(Long id) {
         return usuarioService.findById(id);
     }
+
+    public UsuarioEntity login(String email, String senha) {
+        return (UsuarioEntity) usuarioService.login(email, senha);
+    }
 }

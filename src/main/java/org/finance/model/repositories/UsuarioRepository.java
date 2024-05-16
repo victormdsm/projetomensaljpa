@@ -1,7 +1,10 @@
 package org.finance.model.repositories;
 
 import org.finance.model.entities.UsuarioEntity;
+import org.mindrot.jbcrypt.BCrypt;
 
+import javax.persistence.TypedQuery;
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public class UsuarioRepository implements CrudBasic{
@@ -14,13 +17,11 @@ public class UsuarioRepository implements CrudBasic{
 
     @Override
     public Object insertData(Object obj) {
-        if (obj instanceof UsuarioEntity) {
-            UsuarioEntity usuario = (UsuarioEntity) obj;
-            dao.insertTransaction(usuario);
-            return usuario;
-        } else {
-            throw new IllegalArgumentException("Invalid object type. Expected UsuarioEntity.");
-        }
+        UsuarioEntity createUser = (UsuarioEntity)  obj;
+        String hashedPassword = BCrypt.hashpw(createUser.getSenha(), BCrypt.gensalt());
+        createUser.setSenha(hashedPassword);
+        dao.insertTransaction(createUser);
+        return createUser;
     }
 
     @Override
@@ -41,5 +42,9 @@ public class UsuarioRepository implements CrudBasic{
     @Override
     public Object update(Object obj) {
         return null;
+    }
+
+    public Object login(String email, String senha) {
+        return dao.login(email, senha);
     }
 }
