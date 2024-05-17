@@ -33,5 +33,12 @@ public class UsuarioService implements UsuarioServiceInterface {
         return usuarioRepository.login(email, senha);
     }
 
+    @Override
+    public Object updateUser(Object obj) {
+        return usuarioRepository.update(obj);
+    }
 
+    public void removerUsuario(Object obj) {
+        usuarioRepository.deleteData(obj);
+    }
 }

@@ -10,4 +10,5 @@ public interface UsuarioServiceInterface {
     public List<UsuarioEntity> trazerTodosOsUsuarios();
     public Object findById(Long id);
     public Object login(String email, String senha);
+    public Object updateUser(Object obj);
 }

@@ -1,11 +1,21 @@
 package org.finance.model.repositories;
 
+import org.finance.model.entities.EnderecoEntity;
+
 import java.util.List;
 
 public class EnderecoRepository implements CrudBasic{
+
+    private DAO<EnderecoEntity> dao;
+
+    public EnderecoRepository() {
+        this.dao = new DAO<>(EnderecoEntity.class);
+    }
+
     @Override
     public Object insertData(Object obj) {
-        return null;
+        EnderecoEntity endereco = (EnderecoEntity) obj;
+        return dao.insertData(endereco) ;
     }
 
     @Override

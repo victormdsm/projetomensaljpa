@@ -20,13 +20,14 @@ public class UsuarioRepository implements CrudBasic{
         UsuarioEntity createUser = (UsuarioEntity)  obj;
         String hashedPassword = BCrypt.hashpw(createUser.getSenha(), BCrypt.gensalt());
         createUser.setSenha(hashedPassword);
-        dao.insertTransaction(createUser);
+        dao.insertData(createUser);
         return createUser;
     }
 
     @Override
     public void deleteData(Object obj) {
-
+        UsuarioEntity usuario = (UsuarioEntity) obj;
+        dao.removeData(usuario);
     }
 
     @Override
@@ -41,7 +42,9 @@ public class UsuarioRepository implements CrudBasic{
 
     @Override
     public Object update(Object obj) {
-        return null;
+        UsuarioEntity usuario = (UsuarioEntity) obj;
+        dao.updateData(usuario);
+        return usuario;
     }
 
     public Object login(String email, String senha) {

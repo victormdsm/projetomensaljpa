@@ -45,13 +45,31 @@ public class DAO<E> {
         return this;
     }
 
-    public DAO<E> insertData(E entity) {
+    public DAO<E> insert(E entity) {
         em.persist(entity);
         return this;
     }
 
-    public DAO<E> insertTransaction(E entity) {
-        return this.openTransaction().insertData(entity).closeTransaction();
+    public DAO<E> remove(E entity) {
+        em.remove(entity);
+        return this;
+    }
+
+    public DAO<E> insertData(E entity) {
+        return this.openTransaction().insert(entity).closeTransaction();
+    }
+
+    public DAO<E> removeData(E entity) {
+        return this.openTransaction().remove(entity).closeTransaction();
+    }
+
+    public DAO<E> update(E entity) {
+        em.merge(entity);
+        return this;
+    }
+
+    public DAO<E> updateData(E entity) {
+        return this.openTransaction().update(entity).closeTransaction();
     }
 
     public List<E> getAllData() {

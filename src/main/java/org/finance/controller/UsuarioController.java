@@ -28,4 +28,12 @@ public class UsuarioController {
     public UsuarioEntity login(String email, String senha) {
         return (UsuarioEntity) usuarioService.login(email, senha);
     }
+
+    public void removerUsuario(Object obj) {
+        usuarioService.removerUsuario(obj);
+    }
+
+    public UsuarioEntity updateUser(UsuarioEntity user) {
+        return (UsuarioEntity) usuarioService.updateUser(user);
+    }
 }
